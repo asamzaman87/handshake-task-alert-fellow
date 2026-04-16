@@ -5,9 +5,7 @@
   "description": "Polls Handshake task availability and triggers phone alerts through a backend service.",
   "permissions": ["alarms", "storage"],
   "host_permissions": [
-    "https://ai.joinhandshake.com/*",
-    "http://localhost:8787/*",
-    "https://your-backend.example.com/*"
+    "https://handshake-task-alert-vercel.vercel.app/*"
   ],
   "background": {
     "service_worker": "service-worker.js",
@@ -16,6 +14,5 @@
   "action": {
     "default_popup": "popup.html",
     "default_title": "Handshake Alerts"
-  },
-  "options_page": "options.html"
+  }
 }

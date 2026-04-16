@@ -80,7 +80,7 @@ app.post("/monitor/poll-now", async (req, res) => {
     return res.status(400).json({ error: "Invalid payload", details: parse.error.flatten() });
   }
   const result = await runRemotePoll(parse.data.reason ?? "manual");
-  return res.json(result);
+  return res.status(pollHttpStatus(result)).json(result);
 });
 
 app.get("/monitor/status", (_req, res) => {
@@ -107,7 +107,7 @@ app.get("/cron/poll", async (req, res) => {
   }
 
   const result = await runRemotePoll("cron");
-  return res.status(result.ok ? 200 : 500).json(result);
+  return res.status(pollHttpStatus(result)).json(result);
 });
 
 app.post("/debug/handshake-poll-with-cookie", async (req, res) => {
@@ -174,11 +174,22 @@ function buildHandshakePollUrl(projectId: string): string {
   return `${baseEndpoint}?batch=1&input=${encodeURIComponent(JSON.stringify(inputObj))}`;
 }
 
+function pollHttpStatus(result: {
+  ok: boolean;
+  skipped?: boolean;
+}): number {
+  if (result.skipped) {
+    return 202;
+  }
+  return result.ok ? 200 : 500;
+}
+
 async function runRemotePoll(reason: string): Promise<{
   ok: boolean;
   reason: string;
   called: boolean;
   availableCount: number | null;
+  skipped?: boolean;
   callSid?: string;
   pollError?: string;
   callError?: string;
@@ -196,6 +207,7 @@ async function runRemotePoll(reason: string): Promise<{
   if (!config.pollingEnabled) {
     const skipped = {
       ok: true,
+      skipped: true,
       reason,
       called: false,
       availableCount: null

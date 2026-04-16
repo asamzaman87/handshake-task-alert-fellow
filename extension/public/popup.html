@@ -4,27 +4,15 @@
     <meta charset="utf-8" />
     <title>Handshake Alerts</title>
     <style>
-      body { font-family: Arial, sans-serif; padding: 12px; width: 340px; color: #1f2937; }
-      h2 { margin: 0 0 8px; font-size: 16px; }
-      .row { margin: 6px 0; font-size: 12px; }
-      .label { font-weight: 600; }
-      .error { color: #b91c1c; white-space: pre-wrap; }
-      button { margin-right: 8px; margin-top: 8px; }
+      body { font-family: Arial, sans-serif; padding: 12px; width: 260px; color: #1f2937; }
+      h2 { margin: 0 0 10px; font-size: 16px; }
+      button { display: block; width: 100%; margin-top: 8px; padding: 8px; }
     </style>
   </head>
   <body>
-    <h2>Handshake Task Alerts (Manual UI)</h2>
-    <div class="row"><span class="label">Manual actions:</span> <span id="enabled"></span></div>
-    <div class="row"><span class="label">Last poll:</span> <span id="lastPollAt"></span></div>
-    <div class="row"><span class="label">Poll status:</span> <span id="lastPollStatus"></span></div>
-    <div class="row"><span class="label">Available count:</span> <span id="count"></span></div>
-    <div class="row"><span class="label">Alert state:</span> <span id="alertState"></span></div>
-    <div class="row"><span class="label">Last error:</span> <div class="error" id="lastError"></div></div>
-    <button id="toggleBtn"></button>
+    <h2>Handshake Alerts</h2>
     <button id="pollNowBtn">Poll now (remote)</button>
     <button id="forceAlertBtn">Force alert</button>
-    <button id="clearBtn">Clear state</button>
-    <button id="optionsBtn">Options</button>
     <script type="module" src="popup.js"></script>
   </body>
 </html>

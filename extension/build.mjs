@@ -26,11 +26,6 @@ const context = await Promise.all([
     ...common,
     entryPoints: ["src/popup.ts"],
     outfile: "dist/popup.js"
-  }),
-  build({
-    ...common,
-    entryPoints: ["src/options.ts"],
-    outfile: "dist/options.js"
   })
 ]);
 

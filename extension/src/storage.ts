@@ -1,13 +1,4 @@
-import { ExtensionConfig, ExtensionState } from "./types";
-
-export const DEFAULT_CONFIG: ExtensionConfig = {
-  backendBaseUrl: "http://localhost:8787",
-  destinationPhoneNumber: "",
-  callerLabel: "",
-  pollIntervalMinutes: 10,
-  projectId: "26a53071-8843-4138-97df-430bd3e4cd45",
-  customMessage: "Handshake task available. Open Handshake now."
-};
+import { ExtensionState } from "./types";
 
 export const DEFAULT_STATE: ExtensionState = {
   enabled: false,
@@ -23,18 +14,8 @@ export const DEFAULT_STATE: ExtensionState = {
 };
 
 type StoreShape = {
-  config?: ExtensionConfig;
   state?: ExtensionState;
 };
-
-export async function getConfig(): Promise<ExtensionConfig> {
-  const value = (await chrome.storage.local.get("config")) as StoreShape;
-  return { ...DEFAULT_CONFIG, ...(value.config ?? {}) };
-}
-
-export async function setConfig(config: ExtensionConfig): Promise<void> {
-  await chrome.storage.local.set({ config });
-}
 
 export async function getState(): Promise<ExtensionState> {
   const value = (await chrome.storage.local.get("state")) as StoreShape;

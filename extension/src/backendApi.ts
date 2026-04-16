@@ -2,6 +2,7 @@ export interface RemotePollResult {
   ok: boolean;
   called: boolean;
   availableCount: number | null;
+  skipped?: boolean;
   pollError?: string;
   callError?: string;
 }
@@ -23,13 +24,12 @@ export async function triggerRemotePoll(
 }
 
 export async function forceRemoteAlert(
-  backendBaseUrl: string,
-  message?: string
+  backendBaseUrl: string
 ): Promise<{ ok: boolean; callSid?: string }> {
   const response = await fetch(`${backendBaseUrl}/alerts/force`, {
     method: "POST",
     headers: { "content-type": "application/json" },
-    body: JSON.stringify({ message })
+    body: JSON.stringify({})
   });
   if (!response.ok) {
     const text = await response.text();

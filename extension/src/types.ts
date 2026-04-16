@@ -8,15 +8,6 @@ export type AlertLifecycleState =
   | "RETRY_DUE_CHECKING_TASKS"
   | "RESOLVED";
 
-export interface ExtensionConfig {
-  backendBaseUrl: string;
-  destinationPhoneNumber: string;
-  callerLabel: string;
-  pollIntervalMinutes: number;
-  projectId: string;
-  customMessage: string;
-}
-
 export interface AlertState {
   alertId: string;
   state: AlertLifecycleState;
