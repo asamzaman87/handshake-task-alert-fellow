@@ -67,9 +67,9 @@ Popup actions:
 2. Set all env vars from `.env.example`
 3. Deploy
 4. Set `PUBLIC_BASE_URL` to deployed URL and redeploy if needed
-5. Confirm cron path exists in `vercel.json`
+5. Confirm cron path exists in `backend/vercel.json`
 
-`vercel.json` includes:
+`backend/vercel.json` includes:
 - `*/10 * * * *` schedule calling `/cron/poll`
 
 ## API endpoints

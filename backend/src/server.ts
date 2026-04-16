@@ -9,12 +9,12 @@ if (!process.env.PUBLIC_BASE_URL) {
 }
 
 const app = express();
+const corsOptions = {
+  origin: config.extensionOrigin === "*" ? true : config.extensionOrigin
+};
 app.use(express.json());
-app.use(
-  cors({
-    origin: config.extensionOrigin === "*" ? true : config.extensionOrigin
-  })
-);
+app.use(cors(corsOptions));
+app.options("*", cors(corsOptions));
 
 const startAlertSchema = z.object({
   alertId: z.string().min(3).optional(),
@@ -137,9 +137,11 @@ app.post("/debug/handshake-poll-with-cookie", async (req, res) => {
   }
 });
 
-app.listen(config.port, () => {
-  console.log(`Backend listening on http://localhost:${config.port}`);
-});
+if (!process.env.VERCEL) {
+  app.listen(config.port, () => {
+    console.log(`Backend listening on http://localhost:${config.port}`);
+  });
+}
 
 function buildHandshakePollUrl(projectId: string): string {
   const baseEndpoint = config.handshakeEndpoint;
@@ -307,3 +309,5 @@ function extractAvailableCount(payload: unknown): number {
   }
   return tasks.length;
 }
+
+export default app;
