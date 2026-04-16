@@ -183,6 +183,16 @@ async function runRemotePoll(reason: string): Promise<{
   pollError?: string;
   callError?: string;
 }> {
+  if (reason === "cron" && config.cronJitterMaxSeconds > 0) {
+    const jitterMs = Math.floor(Math.random() * (config.cronJitterMaxSeconds * 1000 + 1));
+    await sleep(jitterMs);
+    logPollResult({
+      reason,
+      note: "Applied cron jitter",
+      jitterMs
+    });
+  }
+
   if (!config.pollingEnabled) {
     const skipped = {
       ok: true,
@@ -289,6 +299,10 @@ function logPollResult(payload: Record<string, unknown>): void {
       ...payload
     })
   );
+}
+
+function sleep(ms: number): Promise<void> {
+  return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
 function extractAvailableCount(payload: unknown): number {

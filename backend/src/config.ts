@@ -20,6 +20,7 @@ export const config = {
   pollingEnabled: process.env.POLLING_ENABLED !== "false",
   cronSecret: process.env.CRON_SECRET ?? "",
   callTimeoutSec: Number(process.env.CALL_TIMEOUT_SEC ?? 20),
+  cronJitterMaxSeconds: Number(process.env.CRON_JITTER_MAX_SECONDS ?? 60),
   defaultMessage: process.env.DEFAULT_VOICE_MESSAGE ?? "Handshake task available. Open Handshake now.",
   handshakeEndpoint:
     process.env.HANDSHAKE_ENDPOINT ??

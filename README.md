@@ -35,6 +35,7 @@ Copy from `backend/.env.example` into local `.env` and into Vercel project envs:
 - `POLLING_ENABLED`
 - `CRON_SECRET`
 - `CALL_TIMEOUT_SEC`
+- `CRON_JITTER_MAX_SECONDS` (default `60`; adds random delay only on cron-triggered runs)
 - `HANDSHAKE_PROJECT_ID`
 - `HANDSHAKE_COOKIE`
 
