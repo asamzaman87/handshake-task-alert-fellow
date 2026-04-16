@@ -21,6 +21,9 @@ export const config = {
   cronSecret: process.env.CRON_SECRET ?? "",
   callTimeoutSec: Number(process.env.CALL_TIMEOUT_SEC ?? 20),
   defaultMessage: process.env.DEFAULT_VOICE_MESSAGE ?? "Handshake task available. Open Handshake now.",
+  handshakeEndpoint:
+    process.env.HANDSHAKE_ENDPOINT ??
+    "https://ai.joinhandshake.com/api/trpc/task.getAllClaimableTasksForFellow",
   handshakeCookie: process.env.HANDSHAKE_COOKIE ?? "",
   defaultProjectId: process.env.HANDSHAKE_PROJECT_ID ?? "26a53071-8843-4138-97df-430bd3e4cd45"
 };

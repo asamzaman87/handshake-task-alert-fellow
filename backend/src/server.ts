@@ -97,7 +97,11 @@ app.get("/cron/poll", async (req, res) => {
   const cronSecret = config.cronSecret;
   if (cronSecret) {
     const authHeader = String(req.headers.authorization ?? "");
-    if (authHeader !== `Bearer ${cronSecret}`) {
+    const headerSecret = String(req.headers["x-cron-secret"] ?? "");
+    const fromVercelCron = Boolean(req.headers["x-vercel-cron"]);
+    const authorized =
+      authHeader === `Bearer ${cronSecret}` || headerSecret === cronSecret || fromVercelCron;
+    if (!authorized) {
       return res.status(401).json({ error: "Unauthorized cron request" });
     }
   }
@@ -138,8 +142,7 @@ app.listen(config.port, () => {
 });
 
 function buildHandshakePollUrl(projectId: string): string {
-  const baseEndpoint =
-    "https://ai.joinhandshake.com/api/trpc/task.getAllClaimableTasksForFellow";
+  const baseEndpoint = config.handshakeEndpoint;
   const inputObj = {
     0: {
       json: {
@@ -252,10 +255,13 @@ async function pollHandshake(projectId: string): Promise<{ availableCount: numbe
   }
 
   const url = buildHandshakePollUrl(projectId);
+  const cookieHeader = config.handshakeCookie.includes("=")
+    ? config.handshakeCookie
+    : `hss-global=${config.handshakeCookie}`;
   const response = await fetch(url, {
     method: "GET",
     headers: {
-      Cookie: config.handshakeCookie,
+      Cookie: cookieHeader,
       Accept: "application/json"
     }
   });
