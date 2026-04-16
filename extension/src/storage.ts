@@ -1,8 +1,8 @@
 import { ExtensionConfig, ExtensionState } from "./types";
 
 export const DEFAULT_CONFIG: ExtensionConfig = {
-  backendBaseUrl: "https://unscreenable-exanimate-stefany.ngrok-free.dev",
-  destinationPhoneNumber: "+13474590196",
+  backendBaseUrl: "http://localhost:8787",
+  destinationPhoneNumber: "",
   callerLabel: "",
   pollIntervalMinutes: 10,
   projectId: "26a53071-8843-4138-97df-430bd3e4cd45",

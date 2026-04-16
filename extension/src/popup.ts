@@ -14,8 +14,8 @@ const optionsBtn = byId("optionsBtn") as HTMLButtonElement;
 
 async function render(): Promise<void> {
   const state = await getState();
-  enabledEl.textContent = state.enabled ? "On" : "Off";
-  toggleBtn.textContent = state.enabled ? "Disable" : "Enable";
+  enabledEl.textContent = state.enabled ? "Allowed" : "Blocked";
+  toggleBtn.textContent = state.enabled ? "Disable manual actions" : "Enable manual actions";
   lastPollAtEl.textContent = state.lastPollAt ? new Date(state.lastPollAt).toLocaleString() : "Never";
   lastPollStatusEl.textContent = state.lastPollStatus;
   countEl.textContent = String(state.lastAvailableCount);

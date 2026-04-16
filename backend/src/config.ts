@@ -15,10 +15,11 @@ export const config = {
   twilioAccountSid: required("TWILIO_ACCOUNT_SID"),
   twilioAuthToken: required("TWILIO_AUTH_TOKEN"),
   twilioFromNumber: required("TWILIO_FROM_NUMBER"),
+  destinationPhoneNumber: process.env.DESTINATION_PHONE_NUMBER ?? "",
   extensionOrigin: process.env.EXTENSION_ORIGIN ?? "*",
-  maxAlertDurationMs: 60_000,
+  pollingEnabled: process.env.POLLING_ENABLED !== "false",
+  cronSecret: process.env.CRON_SECRET ?? "",
   callTimeoutSec: Number(process.env.CALL_TIMEOUT_SEC ?? 20),
-  retryGapMs: Number(process.env.CALL_RETRY_GAP_MS ?? 3_000),
   defaultMessage: process.env.DEFAULT_VOICE_MESSAGE ?? "Handshake task available. Open Handshake now.",
   handshakeCookie: process.env.HANDSHAKE_COOKIE ?? "",
   defaultProjectId: process.env.HANDSHAKE_PROJECT_ID ?? "26a53071-8843-4138-97df-430bd3e4cd45"
