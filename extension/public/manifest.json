@@ -1,0 +1,21 @@
+{
+  "manifest_version": 3,
+  "name": "Handshake Task Availability Alerts",
+  "version": "1.0.0",
+  "description": "Polls Handshake task availability and triggers phone alerts through a backend service.",
+  "permissions": ["alarms", "storage"],
+  "host_permissions": [
+    "https://ai.joinhandshake.com/*",
+    "http://localhost:8787/*",
+    "https://your-backend.example.com/*"
+  ],
+  "background": {
+    "service_worker": "service-worker.js",
+    "type": "module"
+  },
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "Handshake Alerts"
+  },
+  "options_page": "options.html"
+}

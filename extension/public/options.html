@@ -1,0 +1,48 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Handshake Alert Options</title>
+    <style>
+      body { font-family: Arial, sans-serif; padding: 16px; max-width: 680px; color: #111827; }
+      h2 { margin-top: 0; }
+      .field { margin-bottom: 12px; }
+      label { display: block; font-weight: 600; margin-bottom: 4px; }
+      input, textarea { width: 100%; padding: 8px; box-sizing: border-box; }
+      .hint { color: #4b5563; font-size: 12px; margin-top: 4px; }
+      button { margin-top: 8px; }
+      #status { margin-top: 10px; }
+    </style>
+  </head>
+  <body>
+    <h2>Handshake Alert Configuration</h2>
+    <div class="field">
+      <label for="backendBaseUrl">Backend Base URL</label>
+      <input id="backendBaseUrl" type="text" />
+    </div>
+    <div class="field">
+      <label for="destinationPhoneNumber">Destination Phone Number (E.164)</label>
+      <input id="destinationPhoneNumber" type="text" />
+    </div>
+    <div class="field">
+      <label for="callerLabel">Caller label (optional metadata)</label>
+      <input id="callerLabel" type="text" />
+    </div>
+    <div class="field">
+      <label for="pollIntervalMinutes">Poll interval in minutes (minimum 10)</label>
+      <input id="pollIntervalMinutes" type="number" min="10" />
+    </div>
+    <div class="field">
+      <label for="projectId">Handshake project ID</label>
+      <input id="projectId" type="text" />
+    </div>
+    <div class="field">
+      <label for="customMessage">Custom voice message (optional)</label>
+      <textarea id="customMessage" rows="3"></textarea>
+      <div class="hint">Used by backend/Twilio when placing calls.</div>
+    </div>
+    <button id="saveBtn">Save</button>
+    <div id="status"></div>
+    <script type="module" src="options.js"></script>
+  </body>
+</html>
