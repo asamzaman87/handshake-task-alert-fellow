@@ -230,7 +230,7 @@ async function runRemotePoll(reason: string): Promise<{
 
   try {
     const pollResult = await pollHandshake(config.defaultProjectId);
-    if (pollResult.availableCount > 0) {
+    if (pollResult.availableCount > 2) {
       const callResult = await placeSingleAlertCall(config.destinationPhoneNumber);
       const response = {
         ok: callResult.ok,
