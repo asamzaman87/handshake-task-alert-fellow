@@ -26,5 +26,5 @@ export const config = {
     process.env.HANDSHAKE_ENDPOINT ??
     "https://ai.joinhandshake.com/api/trpc/task.getAllClaimableTasksForFellow",
   handshakeCookie: process.env.HANDSHAKE_COOKIE ?? "",
-  defaultProjectId: process.env.HANDSHAKE_PROJECT_ID ?? "26a53071-8843-4138-97df-430bd3e4cd45"
+  defaultProjectId: process.env.HANDSHAKE_PROJECT_ID ?? "aebaf7d0-8cc1-4b11-82bc-3a57a2f4ff4f"
 };
