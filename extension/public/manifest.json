@@ -1,6 +1,6 @@
 {
   "manifest_version": 3,
-  "name": "Handshake Task Availability Alerts",
+  "name": "ivy project",
   "version": "1.0.0",
   "description": "Polls Handshake task availability and triggers phone alerts through a backend service.",
   "permissions": ["alarms", "storage"],
