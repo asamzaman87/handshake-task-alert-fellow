@@ -1,6 +1,6 @@
 import { forceRemoteAlert, triggerRemotePoll } from "./backendApi";
 
-const BACKEND_BASE_URL = "https://handshake-task-alert-vercel.vercel.app";
+const BACKEND_BASE_URL = __EXTENSION_BACKEND_BASE__;
 
 chrome.runtime.onMessage.addListener((message, _sender, sendResponse) => {
   void (async () => {
