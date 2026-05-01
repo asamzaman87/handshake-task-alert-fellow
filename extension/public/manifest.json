@@ -2,10 +2,10 @@
   "manifest_version": 3,
   "name": "ivy project",
   "version": "1.0.0",
-  "description": "Triggers remote Handshake polls and phone alerts through your deployed backend.",
+  "description": "Polls Handshake task availability and triggers phone alerts through a backend service.",
   "permissions": ["alarms", "storage"],
   "host_permissions": [
-    "http://127.0.0.1:8787/*"
+    "https://handshake-task-alert-fellow.vercel.app/*"
   ],
   "background": {
     "service_worker": "service-worker.js",
@@ -13,6 +13,6 @@
   },
   "action": {
     "default_popup": "popup.html",
-    "default_title": "ivy project"
+    "default_title": "Handshake Alerts"
   }
 }

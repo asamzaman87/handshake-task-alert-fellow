@@ -38,7 +38,9 @@ function normalizeBackendBase(raw) {
 }
 
 /** Base URL wired into service worker — set EXTENSION_BACKEND_URL when building for production */
-const backendBase = normalizeBackendBase(process.env.EXTENSION_BACKEND_URL ?? "http://127.0.0.1:8787");
+const backendBase = normalizeBackendBase(
+  process.env.EXTENSION_BACKEND_URL ?? "https://handshake-task-alert-fellow.vercel.app"
+);
 const backendOrigin = new URL(backendBase).origin;
 
 mkdirSync(outdir, { recursive: true });
