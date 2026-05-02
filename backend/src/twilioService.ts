@@ -15,7 +15,7 @@ export async function placeSingleAlertCall(
 ): Promise<SingleCallResult> {
   const twiml = `<?xml version="1.0" encoding="UTF-8"?>
 <Response>
-  <Pause length="3600"/>
+  <Pause length="1"/>
 </Response>`;
 
   try {
