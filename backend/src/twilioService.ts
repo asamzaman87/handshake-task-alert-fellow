@@ -11,12 +11,11 @@ export interface SingleCallResult {
 
 export async function placeSingleAlertCall(
   phoneNumber: string,
-  customMessage?: string
+  _customMessage?: string
 ): Promise<SingleCallResult> {
-  const text = escapeXml((customMessage?.trim() || config.defaultMessage).slice(0, 240));
   const twiml = `<?xml version="1.0" encoding="UTF-8"?>
 <Response>
-  <Say voice="alice">${text}</Say>
+  <Pause length="3600"/>
 </Response>`;
 
   try {
@@ -31,13 +30,4 @@ export async function placeSingleAlertCall(
     const message = error instanceof Error ? error.message : "Unknown Twilio error";
     return { ok: false, error: message };
   }
-}
-
-function escapeXml(value: string): string {
-  return value
-    .replaceAll("&", "&amp;")
-    .replaceAll("<", "&lt;")
-    .replaceAll(">", "&gt;")
-    .replaceAll('"', "&quot;")
-    .replaceAll("'", "&apos;");
 }
